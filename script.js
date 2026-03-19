@@ -1,466 +1,458 @@
 /**
  * Undangan Digital - Main Application Script
- * Mengelola kustomisasi undangan, URL state, dan preview langsung
- * Sesuai spesifikasi: frontend-only, state di URL, 5 template
+ * Interactive Wedding Invitation with Falling Flowers & Firebase
  */
 
 (function() {
     'use strict';
 
     // ========================================
-    // State Management
+    // State & Configuration
     // ========================================
     const state = {
-        template: '1',
-        namaPengantin: 'Ahmad & Rina',
-        tanggal: '2024-12-25',
-        lokasi: 'Grand Ballroom Hotel',
-        fotoUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800',
-        bgColor: '#fff5f5',
-        bgImageUrl: '',
-        musikUrl: ''
+        musicPlaying: false,
+        heroOpened: false,
+        flowerInterval: null,
+        ucapanCount: 0
     };
 
     // ========================================
     // DOM Elements
     // ========================================
     const elements = {
-        // Template selector
-        templateOptions: document.querySelectorAll('.template-option'),
-        templates: document.querySelectorAll('.template'),
-        templateRadios: document.querySelectorAll('input[name="template"]'),
-
-        // Form inputs
-        namaPengantinInput: document.getElementById('nama-pengantin'),
-        tanggalInput: document.getElementById('tanggal'),
-        lokasiInput: document.getElementById('lokasi'),
-        fotoInput: document.getElementById('foto'),
-        bgColorInput: document.getElementById('bg-color'),
-        bgImageInput: document.getElementById('bg-image'),
-        musikSelect: document.getElementById('musik'),
-
-        // Preview elements
-        previewWrapper: document.getElementById('preview-wrapper'),
-
-        // Buttons
-        btnPlay: document.getElementById('btn-play'),
-        btnPause: document.getElementById('btn-pause'),
-        btnCopyLink: document.getElementById('btn-copy-link'),
-        btnPreview: document.getElementById('btn-preview'),
-
-        // Audio
-        bgMusic: document.getElementById('bg-music'),
-
-        // Modal
-        modal: document.getElementById('full-preview-modal'),
-        modalClose: document.querySelector('.modal-close'),
-        modalBody: document.getElementById('modal-preview-body'),
-
+        // Hero Section
+        hero: document.getElementById('hero'),
+        bukaUndangan: document.getElementById('bukaUndangan'),
+        scrollIndicator: document.getElementById('scrollIndicator'),
+        
+        // Main Content
+        mainContent: document.getElementById('mainContent'),
+        musicControl: document.querySelector('.music-control'),
+        musicToggle: document.getElementById('musicToggle'),
+        bgMusic: document.getElementById('bgMusic'),
+        
+        // Form Ucapan
+        formUcapan: document.getElementById('formUcapan'),
+        namaInput: document.getElementById('nama'),
+        kehadiranInput: document.getElementById('kehadiran'),
+        ucapanInput: document.getElementById('ucapan'),
+        ucapanItems: document.getElementById('ucapanItems'),
+        ucapanCount: document.getElementById('ucapanCount'),
+        
+        // Lightbox
+        lightbox: document.getElementById('lightbox'),
+        lightboxImg: document.getElementById('lightbox-img'),
+        lightboxClose: document.querySelector('.lightbox-close'),
+        galeriItems: document.querySelectorAll('.galeri-item'),
+        
         // Toast
-        toast: document.getElementById('toast')
+        toast: document.getElementById('toast'),
+        toastMessage: document.getElementById('toast-message'),
+        
+        // Flower Container
+        flowerContainer: document.getElementById('flower-container')
     };
+
+    // ========================================
+    // Import Firebase Functions
+    // ========================================
+    let kirimUcapan, dengarkanUcapan;
+    
+    import('./firebase-config.js')
+        .then(module => {
+            kirimUcapan = module.kirimUcapan;
+            dengarkanUcapan = module.dengarkanUcapan;
+            console.log('✅ Firebase modules loaded');
+        })
+        .catch(err => {
+            console.error('❌ Failed to load Firebase modules:', err);
+        });
 
     // ========================================
     // Utility Functions
     // ========================================
 
     /**
-     * Format tanggal dari YYYY-MM-DD ke DD MMMM YYYY
+     * Format timestamp to readable date
      */
-    function formatDate(dateString) {
-        if (!dateString) return '';
-
-        const date = new Date(dateString);
-        const months = [
-            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-        ];
-
-        const day = date.getDate();
-        const month = months[date.getMonth()];
-        const year = date.getFullYear();
-
-        return `${day} ${month} ${year}`;
-    }
-
-    /**
-     * Encode nilai untuk URL
-     */
-    function encodeValue(value) {
-        return encodeURIComponent(value || '');
-    }
-
-    /**
-     * Decode nilai dari URL
-     */
-    function decodeValue(value) {
-        try {
-            return decodeURIComponent(value || '');
-        } catch (e) {
-            return value || '';
-        }
+    function formatTime(timestamp) {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diff = now - date;
+        
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(diff / 3600000);
+        const days = Math.floor(diff / 86400000);
+        
+        if (minutes < 1) return 'Baru saja';
+        if (minutes < 60) return `${minutes} menit yang lalu`;
+        if (hours < 24) return `${hours} jam yang lalu`;
+        if (days < 7) return `${days} hari yang lalu`;
+        
+        return date.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
     }
 
     /**
      * Show toast notification
      */
-    function showToast(message) {
-        elements.toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-        elements.toast.classList.add('show');
+    function showToast(message, isError = false) {
+        elements.toastMessage.textContent = message;
+        elements.toast.querySelector('i').className = isError ? 'fas fa-exclamation-circle' : 'fas fa-check-circle';
+        elements.toast.querySelector('i').style.color = isError ? '#f44336' : '#4caf50';
+        elements.toast.classList.add('active');
         
         setTimeout(() => {
-            elements.toast.classList.remove('show');
+            elements.toast.classList.remove('active');
         }, 3000);
     }
 
+    /**
+     * Scroll to element smoothly
+     */
+    function scrollToElement(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
     // ========================================
-    // Core Functions
+    // Flower Animation
     // ========================================
 
     /**
-     * Update preview berdasarkan state
+     * Create a falling flower
      */
-    function updatePreview() {
-        // Update nama pengantin di semua template
-        document.querySelectorAll('.nama-pengantin').forEach(el => {
-            el.textContent = state.namaPengantin;
-        });
+    function createFlower() {
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        
+        // Random flower type
+        const types = ['sakura', 'rose', 'white'];
+        const randomType = types[Math.floor(Math.random() * types.length)];
+        flower.classList.add(randomType);
+        
+        // Random position
+        flower.style.left = Math.random() * 100 + '%';
+        
+        // Random animation duration
+        const duration = 5 + Math.random() * 10;
+        flower.style.animationDuration = duration + 's';
+        
+        // Random size
+        const size = 20 + Math.random() * 20;
+        flower.style.width = size + 'px';
+        flower.style.height = size + 'px';
+        
+        elements.flowerContainer.appendChild(flower);
+        
+        // Remove flower after animation
+        setTimeout(() => {
+            flower.remove();
+        }, duration * 1000);
+    }
 
-        // Update tanggal (format yang sudah diformat)
-        const formattedDate = formatDate(state.tanggal);
-        document.querySelectorAll('.tanggal').forEach(el => {
-            el.textContent = formattedDate;
-        });
+    /**
+     * Start flower animation
+     */
+    function startFlowerAnimation() {
+        // Create flower every 500ms
+        state.flowerInterval = setInterval(() => {
+            createFlower();
+        }, 500);
+    }
 
-        // Update lokasi
-        document.querySelectorAll('.lokasi').forEach(el => {
-            el.textContent = state.lokasi;
-        });
+    /**
+     * Stop flower animation
+     */
+    function stopFlowerAnimation() {
+        if (state.flowerInterval) {
+            clearInterval(state.flowerInterval);
+            state.flowerInterval = null;
+        }
+    }
 
-        // Update foto di semua template
-        document.querySelectorAll('.foto-utama').forEach(el => {
-            el.src = state.fotoUrl;
-            el.alt = 'Foto Pengantin';
-        });
+    // ========================================
+    // Music Control
+    // ========================================
 
-        // Update background preview wrapper
-        if (state.bgImageUrl) {
-            elements.previewWrapper.style.background = `url(${state.bgImageUrl}) center/cover`;
+    /**
+     * Toggle music play/pause
+     */
+    function toggleMusic() {
+        if (state.musicPlaying) {
+            elements.bgMusic.pause();
+            elements.musicToggle.classList.remove('playing');
+            elements.musicToggle.classList.add('paused');
         } else {
-            elements.previewWrapper.style.background = state.bgColor;
-        }
-
-        // Update musik
-        if (state.musikUrl) {
-            const source = elements.bgMusic.querySelector('source');
-            if (source) {
-                source.src = state.musikUrl;
-                elements.bgMusic.load();
-            }
-        }
-    }
-
-    /**
-     * Ganti template aktif
-     */
-    function switchTemplate(templateId) {
-        state.template = templateId;
-
-        // Update radio button
-        elements.templateRadios.forEach(radio => {
-            radio.checked = radio.value === templateId;
-        });
-
-        // Update UI template selector
-        elements.templateOptions.forEach(option => {
-            option.classList.remove('active');
-            if (option.dataset.template === templateId) {
-                option.classList.add('active');
-            }
-        });
-
-        // Update template yang ditampilkan
-        elements.templates.forEach(template => {
-            template.classList.remove('active');
-            if (template.id === `template-${templateId}`) {
-                template.classList.add('active');
-            }
-        });
-
-        // Update URL tanpa reload
-        updateURL();
-    }
-
-    /**
-     * Update URL dengan state saat ini
-     */
-    function updateURL() {
-        const params = new URLSearchParams();
-
-        params.set('template', state.template);
-        params.set('nama', encodeValue(state.namaPengantin));
-        params.set('tanggal', state.tanggal);
-        params.set('lokasi', encodeValue(state.lokasi));
-        params.set('foto', encodeValue(state.fotoUrl));
-        params.set('bgColor', state.bgColor.replace('#', ''));
-
-        if (state.bgImageUrl) {
-            params.set('bgImage', encodeValue(state.bgImageUrl));
-        }
-
-        if (state.musikUrl) {
-            params.set('musik', encodeValue(state.musikUrl));
-        }
-
-        const queryString = params.toString();
-        const newURL = `${window.location.pathname}?${queryString}`;
-
-        // Update URL tanpa reload menggunakan history.pushState
-        window.history.pushState({}, '', newURL);
-    }
-
-    /**
-     * Inisialisasi state dari URL
-     */
-    function initFromURL() {
-        const params = new URLSearchParams(window.location.search);
-
-        if (params.toString()) {
-            // Ada parameter di URL, load state
-            state.template = params.get('template') || '1';
-            state.namaPengantin = decodeValue(params.get('nama')) || state.namaPengantin;
-            state.tanggal = params.get('tanggal') || state.tanggal;
-            state.lokasi = decodeValue(params.get('lokasi')) || state.lokasi;
-            state.fotoUrl = decodeValue(params.get('foto')) || state.fotoUrl;
-
-            const bgColorParam = params.get('bgColor');
-            if (bgColorParam) {
-                state.bgColor = `#${bgColorParam}`;
-            }
-
-            state.bgImageUrl = decodeValue(params.get('bgImage')) || '';
-            state.musikUrl = decodeValue(params.get('musik')) || '';
-
-            // Update form inputs
-            elements.namaPengantinInput.value = state.namaPengantin;
-            elements.tanggalInput.value = state.tanggal;
-            elements.lokasiInput.value = state.lokasi;
-            elements.fotoInput.value = state.fotoUrl;
-            elements.bgColorInput.value = state.bgColor;
-            elements.bgImageInput.value = state.bgImageUrl;
-            elements.musikSelect.value = state.musikUrl;
-
-            // Switch ke template yang dipilih
-            switchTemplate(state.template);
-        }
-
-        // Update preview
-        updatePreview();
-    }
-
-    /**
-     * Salin link ke clipboard
-     */
-    function copyLink() {
-        const currentURL = window.location.href;
-
-        navigator.clipboard.writeText(currentURL).then(() => {
-            showToast('Link berhasil disalin!');
-        }).catch(err => {
-            console.error('Gagal menyalin link:', err);
-
-            // Fallback untuk browser lama
-            const textArea = document.createElement('textarea');
-            textArea.value = currentURL;
-            textArea.style.position = 'fixed';
-            textArea.style.left = '-999999px';
-            textArea.style.top = '-999999px';
-            document.body.appendChild(textArea);
-            textArea.select();
-
-            try {
-                document.execCommand('copy');
-                showToast('Link berhasil disalin!');
-            } catch (err) {
-                alert('Gagal menyalin link. Silakan salin manual dari address bar.');
-            }
-
-            document.body.removeChild(textArea);
-        });
-    }
-
-    /**
-     * Tampilkan preview full screen
-     */
-    function showFullPreview() {
-        // Clone template aktif ke modal
-        const activeTemplate = document.querySelector('.template.active');
-        if (activeTemplate) {
-            const clonedTemplate = activeTemplate.cloneNode(true);
-            clonedTemplate.style.display = 'block';
-            
-            elements.modalBody.innerHTML = '';
-            elements.modalBody.appendChild(clonedTemplate);
-            
-            // Tampilkan modal
-            elements.modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    /**
-     * Tutup modal
-     */
-    function closeModal() {
-        elements.modal.classList.remove('active');
-        document.body.style.overflow = '';
-        elements.modalBody.innerHTML = '';
-    }
-
-    // ========================================
-    // Event Listeners Setup
-    // ========================================
-    function setupEventListeners() {
-        // Template selector - radio buttons
-        elements.templateRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                switchTemplate(this.value);
+            elements.bgMusic.play().catch(err => {
+                console.log('Music play error:', err);
+                showToast('Gagal memutar musik', true);
             });
-        });
+            elements.musicToggle.classList.add('playing');
+            elements.musicToggle.classList.remove('paused');
+        }
+        
+        state.musicPlaying = !state.musicPlaying;
+    }
 
-        // Template selector - click on option
-        elements.templateOptions.forEach(option => {
-            option.addEventListener('click', function(e) {
-                // Jangan trigger jika yang diklik adalah radio input
-                if (e.target.tagName !== 'INPUT') {
-                    const templateId = this.dataset.template;
-                    const radio = this.querySelector('input[type="radio"]');
-                    radio.checked = true;
-                    switchTemplate(templateId);
+    // ========================================
+    // Hero Section - Buka Undangan
+    // ========================================
+
+    /**
+     * Handle buka undangan button click
+     */
+    function handleBukaUndangan() {
+        if (state.heroOpened) return;
+        
+        state.heroOpened = true;
+        
+        // Play music
+        elements.bgMusic.volume = 0.5;
+        elements.bgMusic.play().then(() => {
+            state.musicPlaying = true;
+            elements.musicToggle.classList.add('playing');
+        }).catch(err => {
+            console.log('Autoplay prevented:', err);
+        });
+        
+        // Show main content
+        elements.mainContent.classList.add('active');
+        elements.musicControl.classList.add('active');
+        
+        // Hide scroll indicator
+        elements.scrollIndicator.style.display = 'none';
+        
+        // Scroll to main content
+        setTimeout(() => {
+            scrollToElement('mainContent');
+        }, 500);
+        
+        // Start flower animation
+        startFlowerAnimation();
+        
+        // Initialize scroll animations
+        initScrollAnimations();
+        
+        // Load ucapan from Firebase
+        loadUcapan();
+    }
+
+    // ========================================
+    // Scroll Animations (AOS-like)
+    // ========================================
+
+    /**
+     * Initialize scroll animations
+     */
+    function initScrollAnimations() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
                 }
             });
+        }, observerOptions);
+        
+        // Observe all elements with data-aos attribute
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            observer.observe(el);
         });
+    }
 
-        // Input handlers - update state dan preview
-        elements.namaPengantinInput.addEventListener('input', function() {
-            state.namaPengantin = this.value;
-            updatePreview();
-            updateURL();
+    // ========================================
+    // Ucapan (Guest Book) - Firebase
+    // ========================================
+
+    /**
+     * Load ucapan from Firebase
+     */
+    function loadUcapan() {
+        if (!dengarkanUcapan) {
+            elements.ucapanItems.innerHTML = `
+                <div class="loading-ucapan">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Firebase belum dikonfigurasi. Silakan edit firebase-config.js</span>
+                </div>
+            `;
+            elements.ucapanCount.textContent = '0';
+            return;
+        }
+        
+        elements.ucapanItems.innerHTML = '';
+        
+        dengarkanUcapan((data) => {
+            addUcapanItem(data);
+            state.ucapanCount++;
+            elements.ucapanCount.textContent = state.ucapanCount;
         });
+    }
 
-        elements.tanggalInput.addEventListener('input', function() {
-            state.tanggal = this.value;
-            updatePreview();
-            updateURL();
-        });
+    /**
+     * Add ucapan item to the list
+     */
+    function addUcapanItem(data) {
+        const item = document.createElement('div');
+        item.className = 'ucapan-item';
+        
+        const kehadiranClass = data.kehadiran.toLowerCase() === 'hadir' ? 'hadir' : 'tidak-hadir';
+        const kehadiranLabel = data.kehadiran === 'Hadir' ? '✓ Hadir' : '✗ Tidak Hadir';
+        
+        item.innerHTML = `
+            <div class="ucapan-header">
+                <span class="ucapan-nama">${escapeHtml(data.nama)}</span>
+                <span class="ucapan-kehadiran ${kehadiranClass}">${kehadiranLabel}</span>
+            </div>
+            <p class="ucapan-is">${escapeHtml(data.ucapan)}</p>
+            <p class="ucapan-time">${formatTime(data.timestamp)}</p>
+        `;
+        
+        // Insert at the top
+        elements.ucapanItems.insertBefore(item, elements.ucapanItems.firstChild);
+    }
 
-        elements.lokasiInput.addEventListener('input', function() {
-            state.lokasi = this.value;
-            updatePreview();
-            updateURL();
-        });
-
-        elements.fotoInput.addEventListener('input', function() {
-            state.fotoUrl = this.value;
-            updatePreview();
-            updateURL();
-        });
-
-        elements.bgColorInput.addEventListener('input', function() {
-            state.bgColor = this.value;
-            state.bgImageUrl = ''; // Reset image URL saat pilih warna
-            elements.bgImageInput.value = '';
-            updatePreview();
-            updateURL();
-        });
-
-        elements.bgImageInput.addEventListener('input', function() {
-            state.bgImageUrl = this.value;
-            if (state.bgImageUrl) {
-                elements.bgColorInput.value = '#ffffff'; // Reset warna saat pakai image
-            }
-            updatePreview();
-            updateURL();
-        });
-
-        elements.musikSelect.addEventListener('change', function() {
-            state.musikUrl = this.value;
-            updatePreview();
-        });
-
-        // Music controls
-        elements.btnPlay.addEventListener('click', function() {
-            if (state.musikUrl) {
-                elements.bgMusic.play().catch(err => {
-                    console.log('Autoplay dicegah oleh browser:', err);
-                    alert('Silakan interaksi dengan halaman terlebih dahulu untuk memutar musik.');
+    /**
+     * Handle form submit
+     */
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        
+        const nama = elements.namaInput.value.trim();
+        const kehadiran = elements.kehadiranInput.value;
+        const ucapan = elements.ucapanInput.value.trim();
+        
+        if (!nama || !kehadiran || !ucapan) {
+            showToast('Mohon lengkapi semua field', true);
+            return;
+        }
+        
+        // Disable submit button
+        const submitBtn = elements.formUcapan.querySelector('.btn-submit');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+        
+        // Send to Firebase
+        if (kirimUcapan) {
+            kirimUcapan(nama, kehadiran, '', ucapan)
+                .then(() => {
+                    showToast('Ucapan berhasil dikirim!');
+                    elements.formUcapan.reset();
+                })
+                .catch(err => {
+                    console.error('Error sending ucapan:', err);
+                    showToast('Gagal mengirim ucapan. Coba lagi.', true);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Kirim Ucapan</span>';
                 });
-            } else {
-                alert('Pilih lagu terlebih dahulu!');
-            }
+        } else {
+            // Firebase not configured
+            showToast('Firebase belum dikonfigurasi', true);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Kirim Ucapan</span>';
+        }
+    }
+
+    /**
+     * Escape HTML to prevent XSS
+     */
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // ========================================
+    // Lightbox for Gallery
+    // ========================================
+
+    /**
+     * Open lightbox with image
+     */
+    function openLightbox(imgSrc) {
+        elements.lightboxImg.src = imgSrc;
+        elements.lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    /**
+     * Close lightbox
+     */
+    function closeLightbox() {
+        elements.lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // ========================================
+    // Event Listeners
+    // ========================================
+
+    function setupEventListeners() {
+        // Buka Undangan button
+        elements.bukaUndangan.addEventListener('click', handleBukaUndangan);
+        
+        // Music toggle
+        elements.musicToggle.addEventListener('click', toggleMusic);
+        
+        // Form submit
+        elements.formUcapan.addEventListener('submit', handleFormSubmit);
+        
+        // Gallery lightbox
+        elements.galeriItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                openLightbox(img.src);
+            });
         });
-
-        elements.btnPause.addEventListener('click', function() {
-            elements.bgMusic.pause();
-        });
-
-        // Action buttons
-        elements.btnCopyLink.addEventListener('click', copyLink);
-        elements.btnPreview.addEventListener('click', showFullPreview);
-
-        // Modal close
-        elements.modalClose.addEventListener('click', closeModal);
-        elements.modal.addEventListener('click', function(e) {
+        
+        // Lightbox close
+        elements.lightboxClose.addEventListener('click', closeLightbox);
+        elements.lightbox.addEventListener('click', function(e) {
             if (e.target === this) {
-                closeModal();
+                closeLightbox();
             }
         });
-
-        // Handle browser back/forward
-        window.addEventListener('popstate', function(e) {
-            initFromURL();
-        });
-
-        // Close modal dengan Escape key
+        
+        // Close lightbox with Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && elements.modal.classList.contains('active')) {
-                closeModal();
+            if (e.key === 'Escape' && elements.lightbox.classList.contains('active')) {
+                closeLightbox();
             }
         });
+        
+        // Show scroll indicator after page load
+        setTimeout(() => {
+            elements.scrollIndicator.style.display = 'block';
+        }, 1000);
     }
 
     // ========================================
     // Initialize Application
     // ========================================
-    function init() {
-        console.log('Undangan Digital initialized');
-        console.log('Template: 5 (Klasik, Modern, Rustic, Glamour, Outdoor)');
-        console.log('Features: URL state management, live preview, music player');
 
+    function init() {
+        console.log('🎉 Undangan Digital initialized');
+        console.log('🌸 Features: Falling flowers, Firebase realtime, Lightbox gallery');
+        
         // Setup event listeners
         setupEventListeners();
-
-        // Initialize from URL
-        initFromURL();
-
-        // Set default template active
-        const defaultOption = document.querySelector(`.template-option[data-template="${state.template}"]`);
-        if (defaultOption) {
-            defaultOption.classList.add('active');
+        
+        // Start with some flowers
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => createFlower(), i * 300);
         }
-
-        // Auto play music jika ada parameter musik di URL (setelah user interaction)
-        let hasUserInteraction = false;
-        document.addEventListener('click', function() {
-            if (!hasUserInteraction) {
-                hasUserInteraction = true;
-                if (state.musikUrl) {
-                    elements.bgMusic.play().catch(err => {
-                        console.log('Autoplay dicegah:', err);
-                    });
-                }
-            }
-        }, { once: true });
     }
 
     // ========================================

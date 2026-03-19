@@ -3,319 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Digital - Buat Undangan Pernikahan Online</title>
-    <meta name="description" content="Buat undangan pernikahan digital online gratis dengan mudah">
+    <title>Undangan Pernikahan - Ahmad & Rina</title>
+    <meta name="description" content="Undangan pernikahan digital Ahmad & Rina">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="app-container">
-        <!-- Sidebar Kustomisasi -->
-        <aside class="customization-sidebar">
-            <div class="sidebar-header">
-                <h1>🎉 Undangan Digital</h1>
-                <p>Kustomisasi undanganmu</p>
+<body data-bs-spy="scroll" data-bs-target="#navbar-example">
+    <!-- Animasi Bunga Jatuh -->
+    <div id="flower-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <!-- Salam Arab -->
+            <div class="salam-arabic" data-aos="fade-down">
+                <p class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                <p class="latin-text">Bismillahirrahmanirrahim</p>
             </div>
-            
-            <div class="sidebar-content">
-                <!-- 1. Pilih Template -->
-                <section class="custom-section">
-                    <h3 class="section-title"><i class="fas fa-th-large"></i> 1. Pilih Template</h3>
-                    <div class="template-selector">
-                        <label class="template-option" data-template="1">
-                            <input type="radio" name="template" value="1" checked>
-                            <div class="template-thumb classic-thumb"></div>
-                            <span>Klasik</span>
-                        </label>
-                        <label class="template-option" data-template="2">
-                            <input type="radio" name="template" value="2">
-                            <div class="template-thumb modern-thumb"></div>
-                            <span>Modern</span>
-                        </label>
-                        <label class="template-option" data-template="3">
-                            <input type="radio" name="template" value="3">
-                            <div class="template-thumb rustic-thumb"></div>
-                            <span>Rustic</span>
-                        </label>
-                        <label class="template-option" data-template="4">
-                            <input type="radio" name="template" value="4">
-                            <div class="template-thumb glamour-thumb"></div>
-                            <span>Glamour</span>
-                        </label>
-                        <label class="template-option" data-template="5">
-                            <input type="radio" name="template" value="5">
-                            <div class="template-thumb outdoor-thumb"></div>
-                            <span>Outdoor</span>
-                        </label>
-                    </div>
-                </section>
 
-                <!-- 2. Data Undangan -->
-                <section class="custom-section">
-                    <h3 class="section-title"><i class="fas fa-edit"></i> 2. Data Undangan</h3>
-                    
-                    <div class="form-group">
-                        <label for="nama-pengantin">Nama Pengantin</label>
-                        <input type="text" id="nama-pengantin" class="form-control" 
-                               placeholder="Contoh: Ahmad & Rina" value="Ahmad & Rina">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="tanggal">Tanggal Acara</label>
-                        <input type="date" id="tanggal" class="form-control" value="2024-12-25">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="lokasi">Lokasi Acara</label>
-                        <input type="text" id="lokasi" class="form-control" 
-                               placeholder="Nama gedung atau alamat" value="Grand Ballroom Hotel">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="foto">URL Foto Utama</label>
-                        <input type="url" id="foto" class="form-control" 
-                               placeholder="https://example.com/foto.jpg"
-                               value="https://images.unsplash.com/photo-1519741497674-611481863552?w=800">
-                        <small class="form-hint">Gunakan URL gambar eksternal (Unsplash, Imgur, dll)</small>
-                    </div>
-                </section>
+            <!-- Nama Acara -->
+            <h1 class="event-name" data-aos="fade-up" data-aos-delay="200">
+                <span class="groom-name">Ahmad</span>
+                <span class="and">&</span>
+                <span class="bride-name">Rina</span>
+            </h1>
 
-                <!-- 3. Background -->
-                <section class="custom-section">
-                    <h3 class="section-title"><i class="fas fa-palette"></i> 3. Latar Belakang</h3>
-                    
-                    <div class="form-group">
-                        <label for="bg-color">Warna Background</label>
-                        <input type="color" id="bg-color" class="form-control color-picker" value="#fff5f5">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="bg-image">Atau URL Gambar Background</label>
-                        <input type="url" id="bg-image" class="form-control" 
-                               placeholder="https://example.com/bg.jpg">
-                    </div>
-                </section>
-
-                <!-- 4. Musik Latar -->
-                <section class="custom-section">
-                    <h3 class="section-title"><i class="fas fa-music"></i> 4. Musik Latar</h3>
-                    
-                    <div class="form-group">
-                        <label for="musik">Pilih Lagu</label>
-                        <select id="musik" class="form-control">
-                            <option value="">-- Pilih Lagu --</option>
-                            <option value="templates/music/romantic-piano.mp3">Romantic Piano</option>
-                            <option value="templates/music/acoustic-guitar.mp3">Acoustic Guitar</option>
-                            <option value="templates/music/classical-violin.mp3">Classical Violin</option>
-                            <option value="templates/music/smooth-jazz.mp3">Smooth Jazz</option>
-                            <option value="templates/music/soft-ambient.mp3">Soft Ambient</option>
-                        </select>
-                    </div>
-                    
-                    <div class="music-controls">
-                        <button id="btn-play" class="btn btn-primary">
-                            <i class="fas fa-play"></i> Play
-                        </button>
-                        <button id="btn-pause" class="btn btn-secondary">
-                            <i class="fas fa-pause"></i> Pause
-                        </button>
-                    </div>
-                </section>
-
-                <!-- Action Buttons -->
-                <section class="custom-section action-section">
-                    <button id="btn-copy-link" class="btn btn-success btn-block">
-                        <i class="fas fa-link"></i> Salin Link Undangan
-                    </button>
-                    <button id="btn-preview" class="btn btn-info btn-block">
-                        <i class="fas fa-expand"></i> Preview Full Screen
-                    </button>
-                </section>
+            <!-- Ayat Al-Qur'an -->
+            <div class="quran-verse" data-aos="fade-up" data-aos-delay="400">
+                <p class="arabic-verse">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+                <p class="verse-latin">Wa min āyātihī an khalaqa lakum min anfusikum azwājal litaskunū ilaihā wa ja'ala bainakum mawaddataw wa raḥmah</p>
+                <p class="verse-translation">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."</p>
+                <p class="verse-source">QS. Ar-Rum: 21</p>
             </div>
-        </aside>
 
-        <!-- Area Preview -->
-        <main class="preview-area">
-            <div class="preview-header">
-                <h2><i class="fas fa-desktop"></i> Preview Langsung</h2>
-                <span class="preview-note">Perubahan langsung terlihat</span>
-            </div>
-            
-            <div class="preview-wrapper" id="preview-wrapper">
-                <!-- Template 1: Klasik -->
-                <div class="template template-1 active">
-                    <div class="template-container classic">
-                        <div class="floral-border top"></div>
-                        <div class="invitation-content">
-                            <p class="pre-title">The Wedding of</p>
-                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
-                            <div class="photo-section">
-                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
-                            </div>
-                            <div class="details-section">
-                                <p><strong>Tanggal:</strong> <span class="tanggal">25 Desember 2024</span></p>
-                                <p><strong>Lokasi:</strong> <span class="lokasi">Grand Ballroom Hotel</span></p>
-                            </div>
-                            <div class="footer-section">
-                                <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
-                                <p class="signature">Kami yang berbahagia,<br>Kedua mempelai</p>
-                            </div>
-                        </div>
-                        <div class="floral-border bottom"></div>
-                    </div>
-                </div>
-
-                <!-- Template 2: Modern -->
-                <div class="template template-2">
-                    <div class="template-container modern">
-                        <div class="modern-header">
-                            <div class="geometric-shape"></div>
-                            <h2 class="modern-title">WE'RE GETTING MARRIED</h2>
-                        </div>
-                        <div class="modern-photo-frame">
-                            <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
-                        </div>
-                        <div class="modern-content">
-                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
-                            <div class="modern-details">
-                                <div class="detail-item">
-                                    <i class="far fa-calendar"></i>
-                                    <span class="tanggal">25 Desember 2024</span>
-                                </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span class="lokasi">Grand Ballroom Hotel</span>
-                                </div>
-                            </div>
-                            <p class="modern-quote">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri."</p>
-                            <p class="modern-quran">QS. Ar-Rum: 21</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Template 3: Rustic -->
-                <div class="template template-3">
-                    <div class="template-container rustic">
-                        <div class="rustic-frame">
-                            <div class="wood-corner top-left"></div>
-                            <div class="wood-corner top-right"></div>
-                            <div class="wood-corner bottom-left"></div>
-                            <div class="wood-corner bottom-right"></div>
-                        </div>
-                        <div class="rustic-content">
-                            <div class="leaf-decoration top"></div>
-                            <p class="rustic-pretitle">Together with their families</p>
-                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
-                            <p class="rustic-invite">invite you to celebrate their wedding</p>
-                            <div class="rustic-photo">
-                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
-                            </div>
-                            <div class="rustic-details">
-                                <div class="rustic-detail-box">
-                                    <i class="far fa-calendar"></i>
-                                    <span class="tanggal">25 Desember 2024</span>
-                                </div>
-                                <div class="rustic-detail-box">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span class="lokasi">Grand Ballroom Hotel</span>
-                                </div>
-                            </div>
-                            <div class="leaf-decoration bottom"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Template 4: Glamour -->
-                <div class="template template-4">
-                    <div class="template-container glamour">
-                        <div class="glamour-border"></div>
-                        <div class="glitter-overlay"></div>
-                        <div class="glamour-content">
-                            <div class="glamour-header">
-                                <div class="ornament top"></div>
-                                <p class="glamour-pretitle">You Are Cordially Invited To The Wedding Of</p>
-                            </div>
-                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
-                            <div class="glamour-photo-frame">
-                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
-                            </div>
-                            <div class="glamour-details">
-                                <div class="glamour-detail-item">
-                                    <span class="detail-label">Date</span>
-                                    <span class="tanggal">25 Desember 2024</span>
-                                </div>
-                                <div class="glamour-detail-item">
-                                    <span class="detail-label">Venue</span>
-                                    <span class="lokasi">Grand Ballroom Hotel</span>
-                                </div>
-                            </div>
-                            <div class="glamour-footer">
-                                <div class="ornament bottom"></div>
-                                <p class="glamour-text">Your presence is the greatest gift of all</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Template 5: Outdoor -->
-                <div class="template template-5">
-                    <div class="template-container outdoor">
-                        <div class="nature-frame">
-                            <div class="tree-branch left"></div>
-                            <div class="tree-branch right"></div>
-                        </div>
-                        <div class="outdoor-content">
-                            <div class="outdoor-header">
-                                <div class="sun-icon"><i class="fas fa-sun"></i></div>
-                                <p class="outdoor-pretitle">Celebrating Love & Nature</p>
-                            </div>
-                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
-                            <div class="outdoor-photo">
-                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
-                            </div>
-                            <div class="outdoor-details">
-                                <div class="outdoor-detail">
-                                    <i class="far fa-calendar"></i>
-                                    <span class="tanggal">25 Desember 2024</span>
-                                </div>
-                                <div class="outdoor-detail">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span class="lokasi">Grand Ballroom Hotel</span>
-                                </div>
-                            </div>
-                            <p class="outdoor-quote">"Love is like the wind, you can't see it but you can feel it."</p>
-                            <div class="flower-decoration"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Full Preview Modal -->
-    <div id="full-preview-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div class="modal-body" id="modal-preview-body"></div>
+            <!-- Tombol Buka Undangan -->
+            <button class="btn-open" id="bukaUndangan" data-aos="zoom-in" data-aos-delay="600">
+                <i class="fas fa-envelope-open"></i>
+                <span>Buka Undangan</span>
+            </button>
         </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" id="scrollIndicator" style="display: none;">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        
+        <!-- Musik Control -->
+        <div class="music-control">
+            <button id="musicToggle" class="btn-music">
+                <i class="fas fa-compact-disc"></i>
+            </button>
+        </div>
+
+        <!-- Audio Element -->
+        <audio id="bgMusic" loop>
+            <source src="templates/music/romantic-piano.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Section: Pengantin -->
+        <section class="section pengantin-section" id="pengantin">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down">
+                    <h2 class="section-title">Mempelai</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="pengantin-wrapper">
+                    <!-- Pengantin Pria -->
+                    <div class="pengantin-card" data-aos="fade-right">
+                        <div class="photo-frame">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="Ahmad" class="foto-pengantin pria">
+                        </div>
+                        <h3 class="pengantin-name groom">Ahmad Fauzi, S.Kom</h3>
+                        <p class="pengantin-parent">Putra dari Bpk. Fulan bin Fulan & Ibu Fulanah binti Fulan</p>
+                        <div class="social-links">
+                            <a href="https://instagram.com/ahmad" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="pengantin-divider" data-aos="zoom-in">
+                        <span class="and-symbol">&</span>
+                    </div>
+
+                    <!-- Pengantin Wanita -->
+                    <div class="pengantin-card" data-aos="fade-left">
+                        <div class="photo-frame">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400" alt="Rina" class="foto-pengantin wanita">
+                        </div>
+                        <h3 class="pengantin-name bride">Rina Anggraini, S.E</h3>
+                        <p class="pengantin-parent">Putri dari Bpk. Fulan bin Fulan & Ibu Fulanah binti Fulan</p>
+                        <div class="social-links">
+                            <a href="https://instagram.com/rina" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Lokasi & Waktu -->
+        <section class="section lokasi-section" id="lokasi">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down">
+                    <h2 class="section-title">Lokasi & Waktu</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="lokasi-wrapper">
+                    <!-- Informasi Acara -->
+                    <div class="acara-info" data-aos="fade-right">
+                        <div class="acara-card">
+                            <div class="acara-header">
+                                <i class="fas fa-mosque"></i>
+                                <h3>Akad Nikah</h3>
+                            </div>
+                            <div class="acara-detail">
+                                <p><i class="far fa-calendar"></i> Sabtu, 25 Desember 2024</p>
+                                <p><i class="far fa-clock"></i> 08:00 - 10:00 WIB</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Masjid Agung Al-Azhar</p>
+                                <p class="alamat">Jl. Sisingamangaraja, Kebayoran Baru, Jakarta Selatan</p>
+                            </div>
+                        </div>
+
+                        <div class="acara-card" data-aos="fade-right" data-aos-delay="200">
+                            <div class="acara-header">
+                                <i class="fas fa-glass-cheers"></i>
+                                <h3>Resepsi</h3>
+                            </div>
+                            <div class="acara-detail">
+                                <p><i class="far fa-calendar"></i> Sabtu, 25 Desember 2024</p>
+                                <p><i class="far fa-clock"></i> 11:00 - 14:00 WIB</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Grand Ballroom Hotel</p>
+                                <p class="alamat">Jl. Jend. Sudirman Kav. 1, Jakarta</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map -->
+                    <div class="map-wrapper" data-aos="fade-left">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0!2d106.8!3d-6.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTInMDAuMCJTIDEwNsKwNDgnMDAuMCJF!5e0!3m2!1sid!2sid!4v1234567890" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <a href="https://goo.gl/maps/xxxxx" target="_blank" class="btn-maps">
+                            <i class="fas fa-directions"></i>
+                            <span>Buka Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Flashback -->
+        <section class="section flashback-section" id="flashback">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down">
+                    <h2 class="section-title">Kisah Cinta Kami</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="flashback-content" data-aos="fade-up">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2020</div>
+                            <div class="timeline-content">
+                                <h3>Pertama Kali Bertemu</h3>
+                                <p>Kami pertama kali bertemu di kampus saat mengikuti organisasi mahasiswa. Sebuah pertemuan yang tidak disengaja namun meninggalkan kesan mendalam.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2021</div>
+                            <div class="timeline-content">
+                                <h3>Memulai Hubungan</h3>
+                                <p>Dari teman organisasi, kami semakin dekat dan memutuskan untuk melanjutkan ke jenjang yang lebih serius dengan restu orang tua.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2022</div>
+                            <div class="timeline-content">
+                                <h3>Lamaran</h3>
+                                <p>Dengan penuh keberanian dan doa, Ahmad memberanikan diri untuk melamar Rina. Alhamdulillah, diterima dengan baik oleh kedua keluarga.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-marker">2024</div>
+                            <div class="timeline-content">
+                                <h3>Menuju Halal</h3>
+                                <p>Setelah melalui perjalanan yang panjang, kami akhirnya memutuskan untuk mengikat janji suci pernikahan. Mohon doa restu dari teman-teman semua.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Galeri -->
+        <section class="section galeri-section" id="galeri">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down">
+                    <h2 class="section-title">Galeri Foto</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="galeri-grid">
+                    <div class="galeri-item" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Foto 1" class="galeri-img">
+                    </div>
+                    <div class="galeri-item" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1511285560982-1356c11d4606?w=600" alt="Foto 2" class="galeri-img">
+                    </div>
+                    <div class="galeri-item" data-aos="zoom-in" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600" alt="Foto 3" class="galeri-img">
+                    </div>
+                    <div class="galeri-item" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600" alt="Foto 4" class="galeri-img">
+                    </div>
+                    <div class="galeri-item" data-aos="zoom-in" data-aos-delay="500">
+                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?w=600" alt="Foto 5" class="galeri-img">
+                    </div>
+                    <div class="galeri-item" data-aos="zoom-in" data-aos-delay="600">
+                        <img src="https://images.unsplash.com/photo-1522673607200-1645062cd958?w=600" alt="Foto 6" class="galeri-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Ucapan Tamu -->
+        <section class="section ucapan-section" id="ucapan">
+            <div class="container">
+                <div class="section-header" data-aos="fade-down">
+                    <h2 class="section-title">Kirim Ucapan & Doa</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="ucapan-wrapper">
+                    <!-- Form Ucapan -->
+                    <div class="ucapan-form" data-aos="fade-right">
+                        <form id="formUcapan">
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" id="nama" class="form-control" placeholder="Nama Anda" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kehadiran">Kehadiran</label>
+                                <select id="kehadiran" class="form-control" required>
+                                    <option value="">-- Pilih Kehadiran --</option>
+                                    <option value="Hadir">Hadir</option>
+                                    <option value="Tidak Hadir">Tidak Hadir</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ucapan">Ucapan & Doa</label>
+                                <textarea id="ucapan" class="form-control" rows="4" placeholder="Tuliskan ucapan dan doa Anda..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Kirim Ucapan</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Daftar Ucapan -->
+                    <div class="ucapan-list" data-aos="fade-left">
+                        <h3 class="ucapan-title">
+                            <i class="fas fa-comments"></i>
+                            <span>Ucapan Tamu</span>
+                            <span class="ucapan-count" id="ucapanCount">0</span>
+                        </h3>
+                        <div class="ucapan-items" id="ucapanItems">
+                            <!-- Ucapan akan muncul di sini dari Firebase -->
+                            <div class="loading-ucapan">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>Memuat ucapan...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Penutup -->
+        <section class="section penutup-section">
+            <div class="container">
+                <div class="penutup-content" data-aos="fade-up">
+                    <h2 class="penutup-title">Terima Kasih</h2>
+                    <p class="penutup-text">
+                        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i 
+                        berkenan hadir untuk memberikan doa restu.
+                    </p>
+                    <p class="penutup-signature">
+                        Kami yang berbahagia,<br>
+                        <strong>Ahmad & Rina</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Ahmad & Rina. Created with ❤️</p>
+                <p class="small">Undangan Digital - GitHub Pages</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <i class="fas fa-check-circle"></i> Link berhasil disalin!
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Ucapan berhasil dikirim!</span>
     </div>
 
-    <!-- Audio Element -->
-    <audio id="bg-music" loop>
-        <source src="" type="audio/mpeg">
-    </audio>
-
-    <!-- Script -->
+    <!-- Firebase SDK -->
+    <script type="module" src="firebase-config.js"></script>
+    <!-- Main Script -->
     <script src="script.js"></script>
 </body>
 </html>
