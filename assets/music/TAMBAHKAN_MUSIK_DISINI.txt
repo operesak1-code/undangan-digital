@@ -1,0 +1,76 @@
+# 🎵 Cara Menambahkan File Musik
+
+## Langkah-langkah:
+
+### 1. Download Musik Gratis
+
+Berikut sumber musik gratis bebas royalti:
+
+- **YouTube Audio Library**: https://www.youtube.com/audiolibrary
+- **Free Music Archive**: https://freemusicarchive.org/
+- **Bensound**: https://www.bensound.com/
+- **Incompetech**: https://incompetech.com/
+- **Pixabay Music**: https://pixabay.com/music/
+
+### 2. Pilih Lagu untuk Pernikahan
+
+Rekomendasi genre:
+- Romantic Piano
+- Acoustic Guitar
+- Classical Violin
+- Smooth Jazz
+- Ambient/Instrumental
+
+### 3. Simpan File
+
+Simpan file MP3 di folder ini dengan nama:
+```
+romantic-1.mp3
+romantic-2.mp3
+acoustic-1.mp3
+classical-1.mp3
+jazz-1.mp3
+```
+
+### 4. Update Code
+
+Edit file `undangan.html`, cari bagian:
+```html
+<select class="form-select mb-3" id="musik-select">
+    <option value="">-- Pilih Lagu --</option>
+    <option value="music/romantic-1.mp3">Romantic Piano 1</option>
+    <!-- Tambahkan option baru di sini -->
+</select>
+```
+
+### 5. Upload ke GitHub
+
+Upload file MP3 bersama file lainnya ke repository GitHub.
+
+---
+
+## ⚠️ Penting!
+
+- Pastikan musik **bebas royalti** atau **Creative Commons**
+- Ukuran file maksimal **3-5 MB** per lagu
+- Format: **MP3** dengan bitrate **128kbps**
+- Test di browser sebelum membagikan undangan
+
+---
+
+## 📦 Contoh Struktur File
+
+```
+assets/
+└── music/
+    ├── README.md
+    ├── romantic-1.mp3
+    ├── romantic-2.mp3
+    ├── acoustic-1.mp3
+    ├── classical-1.mp3
+    └── jazz-1.mp3
+```
+
+---
+
+**Selamat menambahkan musik! 🎶**
