@@ -14,14 +14,18 @@ desktop.ini
 *.log
 npm-debug.log*
 
-# Music files (optional - add your own)
-# assets/music/*.mp3
+# Music files (user should add their own MP3)
+templates/music/*.mp3
+templates/music/*.wav
+templates/music/*.ogg
 
-# Image uploads (optional - add your own)
-# assets/images/undangan/*.jpg
-# assets/images/undangan/*.png
+# User uploaded images (if any)
+uploads/
 
 # Temporary files
 tmp/
 temp/
 *.tmp
+
+# Placeholder files
+*.placeholder

@@ -1,139 +1,245 @@
-# HTML Starter Kit
+# Undangan Digital
 
-Starter Kit for Static Websites. SCSS support. Evato - `Themeforest - Codeanyon & colorLib ` These marketplaces have over 1000's of approved template web applications using this HTML starter kit so you can undoubtedly use. 
-<a href="https://sai4ul.github.io/init-html-starter-kit/" target="_blank">Demo Live</a>
+Aplikasi web untuk membuat undangan pernikahan digital secara online dengan mudah dan gratis. Dibuat dengan HTML, CSS, dan JavaScript murni tanpa framework.
 
-### ? Features
+🌐 **[Demo Live](https://operesak1-code.github.io/undangan-digital/)**
 
-- SCSS Support
-- Support all Browsers
-- w3 validation
-- 10+ Product Cards <a href="https://sai4ul.github.io/init-html-starter-kit/" target="_blank">Live</a>
-- 10+ Pricing Cards <a href="https://sai4ul.github.io/init-html-starter-kit/" target="_blank">Live</a>
-- 10+ Blog Cards <a href="https://sai4ul.github.io/init-html-starter-kit/" target="_blank">Live</a>
-- 10+ Team Cards <a href="https://sai4ul.github.io/init-html-starter-kit/" target="_blank">Live</a>
-- 10+ Services Cards <a href="https://sai4ul.github.io/init-html-starter-kit/" target="_blank">Live</a>
-- 10+ Table Style <a href="https://sai4ul.github.io/init-html-starter-kit/" target="_blank">Live</a>
-##
+---
 
-### ?? How to use 
+## ✨ Fitur Utama
 
-> No need any `command`. Index.html can start your design and you will be provided with an html file called `home-page.html` from here you can use components and sections and many free card designs that you can easily design with.
+- **5 Template Undangan** - Klasik, Modern, Rustic, Glamour, Outdoor
+- **Kustomisasi Lengkap** - Nama, tanggal, lokasi, foto, background, musik
+- **Preview Langsung** - Perubahan langsung terlihat tanpa reload
+- **URL State Management** - Data tersimpan di URL, mudah dibagikan
+- **Musik Latar** - Support MP3 dengan kontrol play/pause
+- **Responsive Design** - Tampilan optimal di desktop dan mobile
+- **Tanpa Backend** - 100% frontend, cocok untuk GitHub Pages
+- **Copy Link** - Bagikan undangan dengan satu klik
 
-> SASS - 
- Find a folder named scss which contains some theme default SCSS files which will be in default form with the theme. If you create an SCSS files, just call the`main-style.scss` <a href="https://prnt.sc/4looCdkk7hCC" target="_blank">screenShot</a> .If you use SASS then you need to use `Compiler` as far as I know you just need to add the folder. `Download` - <a href="https://prepros.io/">Prepros</a> ,  <a href="https://scout-app.io/">scout-app</a>
+---
 
-> CSS - 
-If you don't want to use SASS, you can write your CSS code at `main-style.css`.If you don't use SASS then you can delete the sass folder.
-<a href="https://prnt.sc/OG13RbNfe6nh" target="_blank">screenShot</a>
+## 📋 Struktur File
 
-> js/jQuery - 
-If you need to write any javascript and query code then you write it in a file named `main.js` <a href="https://prnt.sc/oT5iDaWlEWL8" target="_blank">screenShot</a>
+```
+undangan-digital/
+├── index.html          # Halaman utama aplikasi
+├── style.css           # Styling untuk 5 template
+├── script.js           # Logika aplikasi & URL management
+├── templates/
+│   ├── README.md
+│   └── music/
+│       ├── README.md
+│       ├── romantic-piano.mp3.placeholder
+│       ├── acoustic-guitar.mp3.placeholder
+│       ├── classical-violin.mp3.placeholder
+│       ├── smooth-jazz.mp3.placeholder
+│       └── soft-ambient.mp3.placeholder
+├── app_summary.md      # Ringkasan aplikasi
+├── app_summaryplan.md  # Planning & alur sistem
+└── README.md           # Dokumentasi ini
+```
 
-## 
+---
 
-### ?? Team Card Components 50+ <a href="https://sai4ul.github.io/init-html-starter-kit/componet.html" target="_blank">Live</a>
-<img src="./assets/images/Team_preview.png" width="100%" align="left"/>
+## 🚀 Quick Start
 
-### &nbsp;
-### ?? Services Card Components 20+ <a href="https://sai4ul.github.io/init-html-starter-kit/services-card.html" target="_blank">Live</a>
-<img src="./assets/images/Services_preview.png" width="100%" align="left"/>
+### 1. Clone atau Download
 
-### &nbsp;
-### Product Card 20+ <a href="https://sai4ul.github.io/init-html-starter-kit/product-card.html" target="_blank">Live</a>
-<img src="./assets/images/product_card.png" width="100%" align="left"/>
-<img src="./assets/images/product_card3.png" width="100%" align="left"/>
-<img src="./assets/images/product_card2.png" width="100%" align="left"/>
+```bash
+git clone https://github.com/operesak1-code/undangan-digital.git
+cd undangan-digital
+```
 
-### &nbsp;
-### Blog Card 10+ <a href="https://sai4ul.github.io/init-html-starter-kit/blog.html" target="_blank">Live</a>
-<img src="./assets/images/blog.png" width="100%" align="left"/>
+### 2. Buka di Browser
 
-### &nbsp;
-### ?? Defendance - Library / Framework / Plugin
+Cukup buka file `index.html` di browser modern (Chrome, Firefox, Edge).
 
-<table>
-  <thead align="center">
-    <tr border: none;>
-      <td><b>Name</b></td>
-      <td><b>Version</b></td>
-      <td><b>Description</b></td>
-      <td><b>Last updated</b></td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://getbootstrap.com" target="_blank">Bootstrap</a></td>
-      <td>5.0.2</td>
-      <td>Bootstrap is a free and open-source CSS framework</td>
-      <td align="center">2023</td>
-    </tr>
-    <tr>
-      <td><a href="https://jquery.com/download" target="_blank">jquery</a></td>
-      <td>3.7.0</td>
-      <td>jQuery is a JavaScript library</td>
-      <td align="center"> 2023</td>
-    </tr>
-    <tr>
-      <td><a href="https://fontawesome.com" target="_blank">Font-awesome</a></td>
-      <td>6.3.0</td>
-      <td>Font Awesome is a font and icon library based on CSS and Less.</td>
-      <td align="center"> 2023</td>
-    </tr>
-    <tr>
-      <td><a href="https://fontawesome.com" target="_blank">Line-awesome</a></td>
-      <td>5.11.2</td>
-      <td>Font and icon library alternative to Font Awesome.</td>
-      <td align="center"> 2023</td>
-    </tr>
-    <tr>
-      <td><a href="https://flagicons.lipis.dev" target="_blank">Flag-icons</a></td>
-      <td>6.6.6</td>
-      <td>Collection of all country flags in SVG</td>
-      <td align="center"> 2023</td>
-    </tr>
-    <tr>
-      <td><a href="https://animate.style" target="_blank">Animate</a></td>
-      <td>4.1.1</td>
-      <td>Library of CSS animation.css</td>
-      <td align="center"> 2023</td>
-    </tr>
-    <tr>
-      <td><a href="https://computerwolf.github.io/SlickNav" target="_blank">SlickNav</a></td>
-      <td>1.0.10</td>
-      <td>Responsive mobile menu plugin for jQuery</td>
-      <td align="center"> 2023</td>
-    </tr>
-    <tr>
-      <td><a href="https://wowjs.uk/" target="_blank">wowjs</a></td>
-      <td>1.1.2</td>
-      <td>JavaScript library that generates CSS animations</td>
-      <td align="center"> 2023</td>
-    </tr>
+### 3. Mulai Kustomisasi
 
-  </tbody>
-</table>
+- Pilih template favoritmu
+- Isi data undangan (nama, tanggal, lokasi)
+- Upload foto via URL
+- Pilih background dan musik
+- Klik "Salin Link" untuk membagikan
 
-### Creator ??
+---
 
-Its <a href="https://sai4ul.com" target="_blank"> sai4ule</a>, Front-end Developer.
-Dhaka , Bangladesh
+## 🎨 Template yang Tersedia
 
+### 1. Klasik
+- Warna: Pink lembut dengan border floral
+- Font: Great Vibes (elegant script)
+- Cocok untuk: Undangan tradisional Indonesia
 
+### 2. Modern
+- Warna: Dark blue gradient
+- Font: Montserrat (minimalist sans-serif)
+- Cocok untuk: Pernikahan modern & minimalist
 
-## Contributors
+### 3. Rustic
+- Warna: Earth tone (coklat & hijau)
+- Font: Playfair Display (serif classic)
+- Cocok untuk: Pernikahan tema alam & vintage
 
-Thanks to these wonderful people!
-<!-- Single -->
-| [<img alt="ShahriarRahat" src="https://avatars.githubusercontent.com/u/78991968?v=4" width="117">](https://github.com/ShahriarRahat) | [<img alt="jmrashed" src="https://avatars.githubusercontent.com/u/8583051?v=4" width="117">](https://github.com/jmrashed) | [<img alt="helloarman" src="https://avatars.githubusercontent.com/u/66985321?v=4" width="117">](https://github.com/helloarman) | [<img alt="sparklesam" src="https://avatars.githubusercontent.com/u/10287995?v=4&s=117" width="117">](https://github.com/sparklesam) | [<img alt="vinnymac" src="https://avatars.githubusercontent.com/u/1832781?v=4&s=117" width="117">](https://github.com/vinnymac) | [<img alt="mariolopjr" src="https://avatars.githubusercontent.com/u/2067324?v=4&s=117" width="117">](https://github.com/mariolopjr) |
-| :------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: |
-|                                             [Shahriar Rahat](https://github.com/ShahriarRahat)                                              |                                             [Rasheduzzaman](https://github.com/jmrashed)                                             |                                             [Arman ](https://github.com/helloarman)                                             |                                             [sparklesam](https://github.com/sparklesam)                                              |                                             [vinnymac](https://github.com/vinnymac)                                             |                                             [mariolopjr](https://github.com/mariolopjr)                                             |
+### 4. Glamour
+- Warna: Black & gold
+- Font: Cinzel (luxury serif)
+- Cocok untuk: Pernikahan mewah & elegan
 
+### 5. Outdoor
+- Warna: Green nature
+- Font: Dancing Script (casual script)
+- Cocok untuk: Pernikahan outdoor & garden
 
-## Licensing
+---
 
-Its an `Open Source` Project. Feel free to use it as per the `Guidelines of Open Source (GPL v3)` and share. Thank you. Here're a few words about `GPL v3` License -
+## 🎵 Cara Menambahkan Musik
 
-  The GPL is often used for software projects and requires that, if developers distribute a modified version of the software, they do so under the same license. This means that if someone modifies your software and distributes the modified version, they must make the source code for that version available to others under the same terms.
+1. Siapkan file MP3 (ukuran < 2MB untuk loading cepat)
+2. Upload ke folder `templates/music/`
+3. Update dropdown musik di `index.html`:
 
-  The GPL also requires that users credit you as the original creator of the software and include a copy of the license with any distributions.
+```html
+<select id="musik" class="form-control">
+    <option value="templates/music/nama-file.mp3">Nama Lagu</option>
+</select>
+```
+
+### Sumber Musik Gratis
+
+- [YouTube Audio Library](https://www.youtube.com/audiolibrary)
+- [Bensound](https://www.bensound.com/)
+- [Free Music Archive](https://freemusicarchive.org/)
+- [Incompetech](https://incompetech.com/music/)
+
+---
+
+## 💡 Cara Menggunakan
+
+### Kustomisasi Undangan
+
+1. **Pilih Template** - Klik salah satu dari 5 thumbnail template
+2. **Isi Data** - Nama pengantin, tanggal, lokasi acara
+3. **Upload Foto** - Masukkan URL foto (dari Unsplash, Imgur, dll)
+4. **Background** - Pilih warna atau URL gambar background
+5. **Musik** - Pilih lagu dari dropdown
+
+### Membagikan Undangan
+
+Setelah selesai kustomisasi:
+
+1. Klik tombol **"Salin Link Undangan"**
+2. URL yang sudah berisi semua data akan tersalin
+3. Bagikan link via WhatsApp, email, atau media sosial
+
+### Tamu Membuka Link
+
+Tamu yang membuka link akan melihat:
+- Template yang Anda pilih
+- Data undangan yang sudah diisi
+- Foto dan background yang disesuaikan
+- Musik latar (jika dipilih)
+
+---
+
+## 🔧 Development
+
+### Teknologi
+
+- **HTML5** - Struktur halaman
+- **CSS3** - Styling dengan CSS Grid & Flexbox
+- **JavaScript (Vanilla)** - Logika tanpa framework
+- **Google Fonts** - 5 font berbeda untuk template
+- **Font Awesome** - Icon library
+
+### Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers
+
+### Local Development
+
+Tidak perlu server lokal. Cukup buka `index.html` di browser.
+
+Jika ingin menggunakan live server (opsional):
+
+```bash
+# Menggunakan Python
+python -m http.server 8000
+
+# Menggunakan Node.js (npx)
+npx http-server -p 8000
+```
+
+---
+
+## 📤 Deploy ke GitHub Pages
+
+1. **Push ke GitHub**
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+2. **Aktifkan GitHub Pages**
+   - Buka repository di GitHub
+   - Settings → Pages
+   - Source: Deploy from branch
+   - Branch: `main`, Folder: `/root`
+   - Save
+
+3. **Akses Aplikasi**
+   ```
+   https://username.github.io/undangan-digital/
+   ```
+
+---
+
+## 📝 Dokumentasi Lengkap
+
+- [App Summary](app_summary.md) - Gambaran umum aplikasi
+- [App Summary Plan](app_summaryplan.md) - Alur pengguna & sistem
+- [Flow Diagram](FLOW_DIAGRAM.md) - Diagram alur aplikasi
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi sangat welcome! Cara kontribusi:
+
+1. Fork repository ini
+2. Buat branch fitur (`git checkout -b fitur/baru`)
+3. Commit perubahan (`git commit -m 'Menambahkan fitur baru'`)
+4. Push ke branch (`git push origin fitur/baru`)
+5. Buat Pull Request
+
+---
+
+## 📄 License
+
+Proyek ini open source dan tersedia di bawah license GPL v3.
+
+---
+
+## 👨‍💻 Creator
+
+Dibuat dengan ❤️ oleh **operesak1-code**
+
+---
+
+## 🙏 Terima Kasih
+
+Terima kasih kepada:
+- Google Fonts untuk font gratis
+- Font Awesome untuk icon library
+- Unsplash untuk foto placeholder
+- Semua kontributor open source
+
+---
+
+**Selamat membuat undangan digital! 🎉**

@@ -1,223 +1,321 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description"
-        content="different layouts for your common website use like team, team members, bootstrap team, team box, team card, team blocks, team members, meet our team, team html, team layout, team members, team plugin, team profile. Easy integration to any Web Projects">
-    <meta name="keywords"
-        content="web card, css card, web card, pricing, table, team, service, blog , product, e-commerce, bootstrap, html, profile card,  plain card,  responsive ">
-    <meta name="author" content="sai4ul">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="sai4ul">
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="html starter kit" />
-    <meta property="og:site_name" content="starker kit" />
-    <meta property="og:url" content="https://sai4ul.com" />
-    <meta property="og:image" content="https://sai4ul.com/images/selfie.jpg" />
-    <meta property="og:description"
-        content="front-end Developer, react.js Developer, next.js Developer, bootstrap, tailwind" />
-    <meta name="twitter:title" content="saiful islam" />
-    <meta name="twitter:description"
-        content="front-end Developer, react.js Developer, next.js Developer, bootstrap, tailwind" />
-    <meta name="twitter:image" content="https://twitter.com/sai4ul/photo" />
-    <meta name="twitter:card" content="summary" />
-
-    <meta name="google-site-verification" content="..." />
-    <meta name="facebook-domain-verification" content="..." />
-    <meta name="csrf-token" content="...">
-    <meta name="currency" content="$">
-
-    <title>init-kit - HTML starter kit </title>
-    <link rel="icon" type="image/x-icon" sizes="20x20" href="assets/images/icon/favicon.png">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-5.3.0.min.css">
-    <!-- fonts & icon -->
-    <link rel="stylesheet" type="text/css" href="assets/css/fonts-icon.css">
-    <!-- Plugin -->
-    <link rel="stylesheet" type="text/css" href="assets/css/plugin.css">
-    <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/main-style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Digital - Buat Undangan Pernikahan Online</title>
+    <meta name="description" content="Buat undangan pernikahan digital online gratis dengan mudah">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <div class="app-container">
+        <!-- Sidebar Kustomisasi -->
+        <aside class="customization-sidebar">
+            <div class="sidebar-header">
+                <h1>🎉 Undangan Digital</h1>
+                <p>Kustomisasi undanganmu</p>
+            </div>
+            
+            <div class="sidebar-content">
+                <!-- 1. Pilih Template -->
+                <section class="custom-section">
+                    <h3 class="section-title"><i class="fas fa-th-large"></i> 1. Pilih Template</h3>
+                    <div class="template-selector">
+                        <label class="template-option" data-template="1">
+                            <input type="radio" name="template" value="1" checked>
+                            <div class="template-thumb classic-thumb"></div>
+                            <span>Klasik</span>
+                        </label>
+                        <label class="template-option" data-template="2">
+                            <input type="radio" name="template" value="2">
+                            <div class="template-thumb modern-thumb"></div>
+                            <span>Modern</span>
+                        </label>
+                        <label class="template-option" data-template="3">
+                            <input type="radio" name="template" value="3">
+                            <div class="template-thumb rustic-thumb"></div>
+                            <span>Rustic</span>
+                        </label>
+                        <label class="template-option" data-template="4">
+                            <input type="radio" name="template" value="4">
+                            <div class="template-thumb glamour-thumb"></div>
+                            <span>Glamour</span>
+                        </label>
+                        <label class="template-option" data-template="5">
+                            <input type="radio" name="template" value="5">
+                            <div class="template-thumb outdoor-thumb"></div>
+                            <span>Outdoor</span>
+                        </label>
+                    </div>
+                </section>
 
-    <header>
-        <div class="header-area">
-            <div class="main-header">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <!-- Logo -->
-                        <div class="col-xl-2 col-lg-2">
-                            <div class="logo">
-                                <a href="index.html"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                <!-- 2. Data Undangan -->
+                <section class="custom-section">
+                    <h3 class="section-title"><i class="fas fa-edit"></i> 2. Data Undangan</h3>
+                    
+                    <div class="form-group">
+                        <label for="nama-pengantin">Nama Pengantin</label>
+                        <input type="text" id="nama-pengantin" class="form-control" 
+                               placeholder="Contoh: Ahmad & Rina" value="Ahmad & Rina">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Acara</label>
+                        <input type="date" id="tanggal" class="form-control" value="2024-12-25">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lokasi">Lokasi Acara</label>
+                        <input type="text" id="lokasi" class="form-control" 
+                               placeholder="Nama gedung atau alamat" value="Grand Ballroom Hotel">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="foto">URL Foto Utama</label>
+                        <input type="url" id="foto" class="form-control" 
+                               placeholder="https://example.com/foto.jpg"
+                               value="https://images.unsplash.com/photo-1519741497674-611481863552?w=800">
+                        <small class="form-hint">Gunakan URL gambar eksternal (Unsplash, Imgur, dll)</small>
+                    </div>
+                </section>
+
+                <!-- 3. Background -->
+                <section class="custom-section">
+                    <h3 class="section-title"><i class="fas fa-palette"></i> 3. Latar Belakang</h3>
+                    
+                    <div class="form-group">
+                        <label for="bg-color">Warna Background</label>
+                        <input type="color" id="bg-color" class="form-control color-picker" value="#fff5f5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bg-image">Atau URL Gambar Background</label>
+                        <input type="url" id="bg-image" class="form-control" 
+                               placeholder="https://example.com/bg.jpg">
+                    </div>
+                </section>
+
+                <!-- 4. Musik Latar -->
+                <section class="custom-section">
+                    <h3 class="section-title"><i class="fas fa-music"></i> 4. Musik Latar</h3>
+                    
+                    <div class="form-group">
+                        <label for="musik">Pilih Lagu</label>
+                        <select id="musik" class="form-control">
+                            <option value="">-- Pilih Lagu --</option>
+                            <option value="templates/music/romantic-piano.mp3">Romantic Piano</option>
+                            <option value="templates/music/acoustic-guitar.mp3">Acoustic Guitar</option>
+                            <option value="templates/music/classical-violin.mp3">Classical Violin</option>
+                            <option value="templates/music/smooth-jazz.mp3">Smooth Jazz</option>
+                            <option value="templates/music/soft-ambient.mp3">Soft Ambient</option>
+                        </select>
+                    </div>
+                    
+                    <div class="music-controls">
+                        <button id="btn-play" class="btn btn-primary">
+                            <i class="fas fa-play"></i> Play
+                        </button>
+                        <button id="btn-pause" class="btn btn-secondary">
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Action Buttons -->
+                <section class="custom-section action-section">
+                    <button id="btn-copy-link" class="btn btn-success btn-block">
+                        <i class="fas fa-link"></i> Salin Link Undangan
+                    </button>
+                    <button id="btn-preview" class="btn btn-info btn-block">
+                        <i class="fas fa-expand"></i> Preview Full Screen
+                    </button>
+                </section>
+            </div>
+        </aside>
+
+        <!-- Area Preview -->
+        <main class="preview-area">
+            <div class="preview-header">
+                <h2><i class="fas fa-desktop"></i> Preview Langsung</h2>
+                <span class="preview-note">Perubahan langsung terlihat</span>
+            </div>
+            
+            <div class="preview-wrapper" id="preview-wrapper">
+                <!-- Template 1: Klasik -->
+                <div class="template template-1 active">
+                    <div class="template-container classic">
+                        <div class="floral-border top"></div>
+                        <div class="invitation-content">
+                            <p class="pre-title">The Wedding of</p>
+                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
+                            <div class="photo-section">
+                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
+                            </div>
+                            <div class="details-section">
+                                <p><strong>Tanggal:</strong> <span class="tanggal">25 Desember 2024</span></p>
+                                <p><strong>Lokasi:</strong> <span class="lokasi">Grand Ballroom Hotel</span></p>
+                            </div>
+                            <div class="footer-section">
+                                <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+                                <p class="signature">Kami yang berbahagia,<br>Kedua mempelai</p>
                             </div>
                         </div>
-                        <div class="col-xl-10 col-lg-10">
-                            <div class="menu-wrapper  d-flex align-items-center justify-content-end">
-                                <!-- Main-menu -->
-                                <div class="main-menu d-none d-lg-block">
-                                    <nav>
-                                        <ul class="listing" id="navigation">
-                                            <li class="single-list"><a href="componet.html"
-                                                    class="single">components</a></li>
-                                            <li class="single-list"><a href="#" class="single">free cards</a>
-                                                <ul class="listing submenu">
-                                                    <li class="single-list"><a href="componet.html#product-card"
-                                                            class="single">porduct card</a></li>
-                                                    <li class="single-list"><a href="componet.html#team-card"
-                                                            class="single">team card</a></li>
-                                                    <li class="single-list"><a href="componet.html#services-card"
-                                                            class="single"> services card</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="single-list"><a href="doc.html" class="single">Doc</a></li>
-                                        </ul>
-                                    </nav>
+                        <div class="floral-border bottom"></div>
+                    </div>
+                </div>
+
+                <!-- Template 2: Modern -->
+                <div class="template template-2">
+                    <div class="template-container modern">
+                        <div class="modern-header">
+                            <div class="geometric-shape"></div>
+                            <h2 class="modern-title">WE'RE GETTING MARRIED</h2>
+                        </div>
+                        <div class="modern-photo-frame">
+                            <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
+                        </div>
+                        <div class="modern-content">
+                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
+                            <div class="modern-details">
+                                <div class="detail-item">
+                                    <i class="far fa-calendar"></i>
+                                    <span class="tanggal">25 Desember 2024</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="lokasi">Grand Ballroom Hotel</span>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
+                            <p class="modern-quote">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri."</p>
+                            <p class="modern-quran">QS. Ar-Rum: 21</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </header>
-    <main>
 
-        <!-- Remove This section , Start here your code -->
-
-        <!-- Slider-area S t a r t -->
-        <section class="sliderArea">
-            <div class="single-slider hero-padding d-flex align-items-center">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-12 col-lg-10">
-                            <div class="slider-content slider-content text-center mb-10">
-                                <h1 class="title wow fadeInUp" data-wow-delay="0.0s">Free HTML Starter Kit</h1>
-                                <h1 class="title wow fadeInUp" data-wow-delay="0.0s"><span class="font-300">60+ Style
-                                        Here </span></h1>
-
+                <!-- Template 3: Rustic -->
+                <div class="template template-3">
+                    <div class="template-container rustic">
+                        <div class="rustic-frame">
+                            <div class="wood-corner top-left"></div>
+                            <div class="wood-corner top-right"></div>
+                            <div class="wood-corner bottom-left"></div>
+                            <div class="wood-corner bottom-right"></div>
+                        </div>
+                        <div class="rustic-content">
+                            <div class="leaf-decoration top"></div>
+                            <p class="rustic-pretitle">Together with their families</p>
+                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
+                            <p class="rustic-invite">invite you to celebrate their wedding</p>
+                            <div class="rustic-photo">
+                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
                             </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <p class="pera font-18 mb-40 wow fadeInUp text-center" data-wow-delay="0.2s">It has more
-                                than 60+ different types of card designed with friendly and markup using modern
-                                technology, you can use it on any type of website card, fully responsive and w3
-                                validated.</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-8">
-                            <div class="tags wow fadeInUp text-center mb-30" data-wow-delay="0.3s">
-                                <span>bootstrap-5.0.2</span>
-                                <span>jquery-3.7.0</span>
-                                <span>Font-awesome-6.3.0</span>
-                                <span>Line-awesome-5.11.2</span>
-                                <span>Flag-icons-6.6.6</span>
-                                <span>Animate-4.1.1</span>
-                                <span>SlickNav-1.0.10</span>
-                                <span>wowjs-1.1.2</span>
-                                <span>CSS-3</span>
-                                <span>SASS</span>
-                                <span>HTML-5</span>
-                                <span>Fields validator</span>
-                                <span>Modern design</span>
-                                <span>Easy to customize</span>
-                                <span>Responsive</span>
-                                <span>Clean Code</span>
-                                <span>Well Documentation</span>
-                                <span>W3C Valid</span>
+                            <div class="rustic-details">
+                                <div class="rustic-detail-box">
+                                    <i class="far fa-calendar"></i>
+                                    <span class="tanggal">25 Desember 2024</span>
+                                </div>
+                                <div class="rustic-detail-box">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="lokasi">Grand Ballroom Hotel</span>
+                                </div>
                             </div>
-                            <div class="d-flex align-items-center gap-10 flex-wrap justify-content-center wow fadeInUp"
-                                data-wow-delay="0.4s">
-                                <a href="https://sai4ul.github.io/init-html-starter-kit/" class="btn-primary-outline"
-                                    target="_blank">install VS-extention</a>
-                                <a href="https://github.com/sai4ul/init-html-starter-kit" class="btn-primary-fill"
-                                    target="_blank">GitHub download</a>
-                            </div>
+                            <div class="leaf-decoration bottom"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- End-of slider -->
-    </main>
 
-    <footer class="footer-area">
-        <div class="footer-padding">
-            <div class="container">
-                <div class="col-xl-12">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-10 mb-40">
-                        <!-- Social -->
-                        <div class="footer-social">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                        </div>
-                        <!-- logo -->
-                        <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.png" alt=""></a>
-                        </div>
-                        <ul class="footer-info-right d-flex gap-20">
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="footer-menu text-center">
-                        <nav>
-                            <ul>
-                                <li><a href="team.html">Team Card</a></li>
-                                <li><a href="services-card.html">Services card</a></li>
-                                <li><a href="product-card.html">product card</a></li>
-                                <li><a href="table.html">table</a></li>
-                                <li><a href="#">Testimonial</a></li>
-                                <li><a href="#">counter card</a></li>
-                                <li><a href="#">details card</a></li>
-                                <li><a href="#">invoice</a></li>
-                                <li><a href="#">Creative</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right text-center">
-                                <p>&copy; 2025 init-starter-kit. free & open source.</p>
+                <!-- Template 4: Glamour -->
+                <div class="template template-4">
+                    <div class="template-container glamour">
+                        <div class="glamour-border"></div>
+                        <div class="glitter-overlay"></div>
+                        <div class="glamour-content">
+                            <div class="glamour-header">
+                                <div class="ornament top"></div>
+                                <p class="glamour-pretitle">You Are Cordially Invited To The Wedding Of</p>
+                            </div>
+                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
+                            <div class="glamour-photo-frame">
+                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
+                            </div>
+                            <div class="glamour-details">
+                                <div class="glamour-detail-item">
+                                    <span class="detail-label">Date</span>
+                                    <span class="tanggal">25 Desember 2024</span>
+                                </div>
+                                <div class="glamour-detail-item">
+                                    <span class="detail-label">Venue</span>
+                                    <span class="lokasi">Grand Ballroom Hotel</span>
+                                </div>
+                            </div>
+                            <div class="glamour-footer">
+                                <div class="ornament bottom"></div>
+                                <p class="glamour-text">Your presence is the greatest gift of all</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Template 5: Outdoor -->
+                <div class="template template-5">
+                    <div class="template-container outdoor">
+                        <div class="nature-frame">
+                            <div class="tree-branch left"></div>
+                            <div class="tree-branch right"></div>
+                        </div>
+                        <div class="outdoor-content">
+                            <div class="outdoor-header">
+                                <div class="sun-icon"><i class="fas fa-sun"></i></div>
+                                <p class="outdoor-pretitle">Celebrating Love & Nature</p>
+                            </div>
+                            <h1 class="nama-pengantin">Ahmad & Rina</h1>
+                            <div class="outdoor-photo">
+                                <img class="foto-utama" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Foto Pengantin">
+                            </div>
+                            <div class="outdoor-details">
+                                <div class="outdoor-detail">
+                                    <i class="far fa-calendar"></i>
+                                    <span class="tanggal">25 Desember 2024</span>
+                                </div>
+                                <div class="outdoor-detail">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="lokasi">Grand Ballroom Hotel</span>
+                                </div>
+                            </div>
+                            <p class="outdoor-quote">"Love is like the wind, you can't see it but you can feel it."</p>
+                            <div class="flower-decoration"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
-    <!-- Scroll Up  -->
-    <div class="progressParent">
-        <svg class="backCircle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-        </svg>
+        </main>
     </div>
-    <!-- End-of Scroll-->
 
-    <!-- jquery-->
-    <script src="assets/js/jquery-3.7.0.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap-5.3.0.min.js"></script>
-    <!-- Plugin -->
-    <script src="assets/js/plugin.js"></script>
-    <!-- Main js-->
-    <script src="assets/js/main.js"></script>
+    <!-- Full Preview Modal -->
+    <div id="full-preview-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body" id="modal-preview-body"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i> Link berhasil disalin!
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <!-- Script -->
+    <script src="script.js"></script>
 </body>
-
 </html>

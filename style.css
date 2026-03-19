@@ -1,0 +1,1096 @@
+/* ========================================
+   Undangan Digital - Main Styles
+   Aplikasi Undangan Pernikahan Online
+   ======================================== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #e91e63;
+    --secondary-color: #9c27b0;
+    --accent-color: #ff4081;
+    --gold-color: #d4af37;
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f8f9fa;
+    --success-color: #4caf50;
+    --info-color: #2196f3;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+}
+
+/* App Container - Layout Utama */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ========================================
+   Sidebar Kustomisasi
+   ======================================== */
+.customization-sidebar {
+    width: 400px;
+    background: white;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.sidebar-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-header p {
+    font-size: 0.9rem;
+    opacity: 0.95;
+}
+
+.sidebar-content {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+/* Custom Section */
+.custom-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.custom-section:last-child {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-title i {
+    font-size: 1rem;
+}
+
+/* Template Selector */
+.template-selector {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+
+.template-option {
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.template-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.template-option:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.2);
+}
+
+.template-option input[type="radio"]:checked + .template-thumb,
+.template-option.active {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(156, 39, 176, 0.1));
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.template-thumb {
+    width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    margin-bottom: 0.3rem;
+    border: 2px solid transparent;
+}
+
+.classic-thumb {
+    background: linear-gradient(135deg, #fff5f5, #ffe0e0);
+    border-color: #e91e63;
+}
+
+.modern-thumb {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-color: #fff;
+}
+
+.rustic-thumb {
+    background: linear-gradient(135deg, #8b7355, #d2b48c);
+    border-color: #654321;
+}
+
+.glamour-thumb {
+    background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+    border-color: var(--gold-color);
+}
+
+.outdoor-thumb {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-color: #4caf50;
+}
+
+.template-option span {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    display: block;
+    font-weight: 500;
+}
+
+/* Form Controls */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.form-control.color-picker {
+    height: 50px;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.form-hint {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+
+/* Music Controls */
+.music-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background: #c2185b;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+    flex: 1;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #45a049;
+}
+
+.btn-info {
+    background: var(--info-color);
+    color: white;
+}
+
+.btn-info:hover {
+    background: #1976d2;
+}
+
+.btn-block {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.action-section .btn {
+    margin-bottom: 0.5rem;
+}
+
+/* ========================================
+   Preview Area
+   ======================================== */
+.preview-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.preview-header {
+    background: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.preview-header h2 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preview-note {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.preview-wrapper {
+    padding: 2rem;
+    flex: 1;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ========================================
+   Template Styles - Base
+   ======================================== */
+.template {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.template.active {
+    display: block;
+}
+
+.template-container {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* ========================================
+   Template 1: Klasik
+   ======================================== */
+.template-1 .template-container.classic {
+    background: linear-gradient(135deg, #fff5f5, #ffe0e0);
+    border: 3px double #e91e63;
+}
+
+.floral-border {
+    height: 25px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' fill='none' stroke='%23e91e63' stroke-width='2'/%3E%3Ccircle cx='50' cy='10' r='5' fill='%23e91e63' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 100px 20px;
+    background-repeat: repeat-x;
+}
+
+.floral-border.bottom {
+    transform: rotate(180deg);
+}
+
+.invitation-content {
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+.pre-title {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.nama-pengantin {
+    font-size: 2.5rem;
+    font-family: 'Great Vibes', cursive;
+    color: var(--primary-color);
+    margin: 1.5rem 0;
+    line-height: 1.3;
+}
+
+.photo-section {
+    margin: 2rem 0;
+}
+
+.foto-utama {
+    width: 100%;
+    max-width: 350px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.details-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+}
+
+.details-section p {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.footer-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(233, 30, 99, 0.3);
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.signature {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* ========================================
+   Template 2: Modern
+   ======================================== */
+.template-2 .template-container.modern {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    border: none;
+}
+
+.modern-header {
+    position: relative;
+    padding: 2rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.geometric-shape {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: rotate(45deg);
+}
+
+.modern-title {
+    font-size: 1.3rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+}
+
+.modern-photo-frame {
+    padding: 0 2rem;
+}
+
+.modern-photo-frame .foto-utama {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.modern-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.modern-content .nama-pengantin {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    color: white;
+    margin: 1.5rem 0;
+    font-weight: 700;
+}
+
+.modern-details {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.detail-item i {
+    color: var(--accent-color);
+}
+
+.modern-quote {
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.8;
+    margin: 2rem 0 0.5rem;
+    line-height: 1.6;
+}
+
+.modern-quran {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* ========================================
+   Template 3: Rustic
+   ======================================== */
+.template-3 .template-container.rustic {
+    background: linear-gradient(135deg, #f5e6d3, #e8d5b5);
+    border: none;
+}
+
+.rustic-frame {
+    position: relative;
+    padding: 2rem;
+}
+
+.wood-corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 0 L100 0 L100 100 Q50 50 0 100 Z' fill='%238b7355' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.wood-corner.top-left {
+    top: 0;
+    left: 0;
+    transform: rotate(0deg);
+}
+
+.wood-corner.top-right {
+    top: 0;
+    right: 0;
+    transform: rotate(90deg);
+}
+
+.wood-corner.bottom-left {
+    bottom: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.wood-corner.bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+.rustic-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.leaf-decoration {
+    height: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M0 10 Q15 0 30 10 T60 10 T100 10' fill='none' stroke='%236b8e23' stroke-width='1.5'/%3E%3Ccircle cx='30' cy='10' r='3' fill='%236b8e23'/%3E%3Ccircle cx='60' cy='10' r='3' fill='%236b8e23'/%3E%3C/svg%3E");
+    background-size: 100px 20px;
+    background-repeat: repeat-x;
+    margin: 1rem 0;
+}
+
+.rustic-pretitle {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.rustic-content .nama-pengantin {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    color: #5d4e37;
+    margin: 1rem 0;
+    font-weight: 700;
+}
+
+.rustic-invite {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.rustic-photo {
+    margin: 1.5rem 0;
+}
+
+.rustic-photo .foto-utama {
+    width: 100%;
+    max-width: 330px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 4px solid #8b7355;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.rustic-details {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.rustic-detail-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(139, 115, 85, 0.1);
+    border-radius: 5px;
+    border: 1px solid rgba(139, 115, 85, 0.3);
+    font-size: 0.9rem;
+}
+
+.rustic-detail-box i {
+    color: #6b8e23;
+}
+
+/* ========================================
+   Template 4: Glamour
+   ======================================== */
+.template-4 .template-container.glamour {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    color: white;
+    border: 3px solid var(--gold-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.glamour-border {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    pointer-events: none;
+}
+
+.glitter-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.glamour-content {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.glamour-header {
+    margin-bottom: 1.5rem;
+}
+
+.ornament {
+    width: 80px;
+    height: 25px;
+    margin: 0 auto 1rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30'%3E%3Cpath d='M0 15 Q25 0 50 15 T100 15 L100 20 Q50 30 0 20 Z' fill='%23d4af37'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ornament.bottom {
+    transform: rotate(180deg);
+}
+
+.glamour-pretitle {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.glamour-content .nama-pengantin {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: var(--gold-color);
+    margin: 1.5rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+}
+
+.glamour-photo-frame {
+    margin: 1.5rem 0;
+}
+
+.glamour-photo-frame .foto-utama {
+    width: 100%;
+    max-width: 320px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 4px solid var(--gold-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.glamour-details {
+    margin: 1.5rem 0;
+}
+
+.glamour-detail-item {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.glamour-detail-item .detail-label {
+    color: var(--gold-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.glamour-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.glamour-text {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ========================================
+   Template 5: Outdoor
+   ======================================== */
+.template-5 .template-container.outdoor {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.nature-frame {
+    position: relative;
+    padding: 2rem;
+}
+
+.tree-branch {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 100 Q30 70 50 50 T100 0' fill='none' stroke='%234caf50' stroke-width='3'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%2381c784'/%3E%3Ccircle cx='30' cy='70' r='4' fill='%2381c784'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.tree-branch.left {
+    top: 0;
+    left: 0;
+}
+
+.tree-branch.right {
+    top: 0;
+    right: 0;
+    transform: scaleX(-1);
+}
+
+.outdoor-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.outdoor-header {
+    margin-bottom: 1rem;
+}
+
+.sun-icon {
+    font-size: 1.8rem;
+    color: #ff9800;
+    margin-bottom: 0.5rem;
+}
+
+.outdoor-pretitle {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.outdoor-content .nama-pengantin {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.3rem;
+    color: #2e7d32;
+    margin: 1rem 0;
+    font-weight: 700;
+}
+
+.outdoor-photo {
+    margin: 1.5rem 0;
+}
+
+.outdoor-photo .foto-utama {
+    width: 100%;
+    max-width: 330px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 4px solid white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.outdoor-details {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.outdoor-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+}
+
+.outdoor-detail i {
+    color: #4caf50;
+}
+
+.outdoor-quote {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-light);
+    margin: 1.5rem 0;
+    line-height: 1.6;
+}
+
+.flower-decoration {
+    height: 25px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30'%3E%3Ccircle cx='25' cy='15' r='8' fill='%23e91e63' opacity='0.5'/%3E%3Ccircle cx='50' cy='15' r='10' fill='%23e91e63' opacity='0.7'/%3E%3Ccircle cx='75' cy='15' r='8' fill='%23e91e63' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 100px 30px;
+    background-repeat: repeat-x;
+    margin-top: 1rem;
+}
+
+/* ========================================
+   Modal Full Preview
+   ======================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideDown 0.3s ease;
+}
+
+.modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 2rem;
+    background: #f5f5f5;
+}
+
+/* ========================================
+   Toast Notification
+   ======================================== */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background: #333;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    position: fixed;
+    z-index: 1001;
+    right: 30px;
+    bottom: 30px;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.toast i {
+    margin-right: 0.5rem;
+    color: var(--success-color);
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 1024px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .customization-sidebar {
+        width: 100%;
+        max-height: none;
+        position: relative;
+    }
+
+    .template-selector {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-header {
+        padding: 1.5rem;
+    }
+
+    .sidebar-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .sidebar-content {
+        padding: 1rem;
+    }
+
+    .template-selector {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .preview-header {
+        padding: 1rem;
+    }
+
+    .preview-header h2 {
+        font-size: 1rem;
+    }
+
+    .preview-wrapper {
+        padding: 1rem;
+    }
+
+    .nama-pengantin {
+        font-size: 1.8rem !important;
+    }
+
+    .foto-utama {
+        height: 200px !important;
+    }
+
+    .modern-details,
+    .rustic-details,
+    .outdoor-details {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .template-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .music-controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+}
